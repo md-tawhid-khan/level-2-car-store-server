@@ -7,4 +7,10 @@ carRouter.post('/create',carController.createCar)
 
 carRouter.get('/', carController.getAllCar)
 
+carRouter.get('/:carId',carController.getSingleCar)
+
+carRouter.patch('/update/:carId', carController.updateCar)
+
+carRouter.delete('/delete/:carId',carController.deleteCar)
+
 export default carRouter
