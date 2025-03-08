@@ -6,6 +6,15 @@ const createCar=async(payload:ICar)=>{
     return result
 }
 
+const getAllCar=async()=>{
+    const result=await Car.find()
+    return result
+}
+
+
+
 export const  carService = {
-    createCar
+    createCar,
+    getAllCar,
+    
 }
