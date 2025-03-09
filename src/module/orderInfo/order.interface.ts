@@ -4,3 +4,7 @@ export interface IOrder {
   quantity: number,
   totalPrice: number
 }
+
+export interface ITotalRevenu {
+    totalRevenue:number
+}

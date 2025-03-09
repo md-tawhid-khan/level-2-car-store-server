@@ -1,6 +1,6 @@
 import Car from "../carInfo/car.model"
-import { IOrder } from "./order.interface"
-import { Order } from "./order.model"
+import { IOrder, ITotalRevenu, } from "./order.interface"
+import { Order, Revenue } from "./order.model"
 
 const createOrder=async(orderData:IOrder)=>{
      const car=await Car.findById(orderData.car)
@@ -24,6 +24,31 @@ const createOrder=async(orderData:IOrder)=>{
      return result
 }
 
+const createRevenue=async()=>{
+    
+    const pipeline=[
+       {
+        $group:{
+            _id:null,
+            totalRevenue:{$sum:"$totalPrice"}
+        }
+    }
+    ]
+    const revenue=await Order.aggregate(pipeline)
+
+  
+   
+    const newRevenue=new Revenue(revenue[0] as ITotalRevenu)
+
+    
+
+    const result=await newRevenue.save()
+    
+    
+    return result 
+}
+
 export const orderServices={
-    createOrder
+    createOrder,
+    createRevenue
 }
